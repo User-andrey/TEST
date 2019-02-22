@@ -60,7 +60,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let firstMonth = calendar.date(byAdding: .month, value: (-monthToday!)+1, to: myDate)
         let firstJobDay = calendar.date(byAdding: .day, value: -dayToday, to: firstMonth!)
         
-        let numberJobWeek = 3
+        let numberJobWeek = 4
         
         //первый и последний день рабочей недели
         let startDayJobWeek = firstJobDay?.addingTimeInterval((weekInSecond*2) * Double(numberJobWeek))
@@ -70,13 +70,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let jobWeekComponents = Calendar.current.dateComponents([ .month, .day, .weekday, .hour ], from: startDayJobWeek!)
         let dayOnly = jobWeekComponents.day
         
+        //последний день выбранного месяца
         var lastDayOfSelectMonth = calendar.date(byAdding: .month, value: 1, to: startDayJobWeek!)
         lastDayOfSelectMonth = calendar.date(byAdding: .day, value: -dayOnly!, to: lastDayOfSelectMonth!)
-
-        let startSelectDayJobWeek = calendar.component(.month, from: startDayJobWeek!)
-        let lastSelectDayJobWeek = calendar.component(.month, from: lastDayJobWeek!)
         
-        if lastSelectDayJobWeek > startSelectDayJobWeek {
+        //номера месяцев первого и последнего дней рабочей недели
+        let numberMonthFirstdayJobWeek = calendar.component(.month, from: startDayJobWeek!)
+        let numberMonthLastDayJobWeek = calendar.component(.month, from: lastDayJobWeek!)
+        
+        if numberMonthLastDayJobWeek > numberMonthFirstdayJobWeek {
             print("Start = \(startDayJobWeek!) End1 = \(lastDayOfSelectMonth!)")
         }else{
             print("Start = \(startDayJobWeek!) End = \(lastDayJobWeek!)")
