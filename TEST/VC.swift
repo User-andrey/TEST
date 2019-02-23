@@ -40,7 +40,18 @@ class VC: UIViewController {
             firstJobDayInYear! += weekInSecond
 //            print("...................")
         }
-        print("\(jobArray)")
+        
+        var i = 7 // если 0 то дневные смены а если 7 то ночные
+        for _ in 1...13 {
+            
+            for _ in 1...7 {
+                print(jobArray[i])
+                i += 1
+            }
+            i += 7
+            print("...................")
+        }
+        
     }
     
 
